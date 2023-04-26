@@ -30,15 +30,15 @@ pipeline {
                 sh "mvn package -f clickup"
             }
         }
-        stage('Deploy and Run') {
-            steps {
+        //stage('Deploy and Run') {
+            //steps {
                 //withEnv(['JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64']) {
                 //sh 'cd /var/lib/jenkins/workspace/clickupp/clickup && sudo -u jenkins ./startclickup.sh'
-                sh '/var/lib/jenkins/workspace/clickupp/clickup/startclickup.sh'
+                //sh '/var/lib/jenkins/workspace/test/clickup/startclickup.sh'
 
                 //}
-            }
-        }
+            //}
+        //}
         //stage('Deploy and Run') {
             //steps {
               
@@ -48,5 +48,11 @@ pipeline {
         
         //}
 
+    }
+
+    post {
+        always {
+            sh "nohup java -jar /var/lib/jenkins/workspace/test/clickup/target/ClickupDashboard-0.0.1-SNAPSHOT.jar &"
+        }
     }
 }
