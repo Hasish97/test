@@ -45,21 +45,18 @@ pipeline {
             //}
         //}
         stage('Deploy and Run') {
-            parallel {
-            stage('Start Server') {
                 steps {
-                    sh 'java -jar target/ClickupDashboard-0.0.1-SNAPSHOT.jar &'
-                    sh 'sleep 60'
+                    sh 'sudo systemctl start clickup'
                 }
             }
-            }
+            
             //steps {
               
                 //sh "bash ./clickup.sh"
                 
             //}
         
-        }
+        
 
     }
 
