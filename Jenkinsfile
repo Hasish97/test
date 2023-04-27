@@ -10,8 +10,8 @@ pipeline {
 
         stage('git repo & clean') {
             steps {
-               sh "rm -rf  /s /q clickup"
-                sh "git clone https://github.com/Hasish97/clickup.git"
+               //sh "rm -rf  /s /q clickup"
+                //sh "git clone https://github.com/Hasish97/clickup.git"
                 sh "mvn clean -f clickup"
             }
         }
@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy and Run') {
             steps {
               
-                sh "nohup java -jar /var/lib/jenkins/workspace/test/clickup/target/ClickupDashboard-0.0.1-SNAPSHOT.jar > clickup.log 2>&1 &"
+                sh "nohup java -jar /var/lib/jenkins/workspace/test/clickup/target/ClickupDashboard-0.0.1-SNAPSHOT.jar > clickup.log &"
                 
             }
         
