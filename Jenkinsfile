@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
         stage('Stop app running on port 8080') {
@@ -40,11 +40,18 @@ pipeline {
             //}
         //}
         stage('Deploy and Run') {
-            steps {
-              
-                sh "bash ./clickup.sh"
-                
+            parallel {
+            stage('Start Server') {
+                steps {
+                    sh 'java -jar target/ClickupDashboard-0.0.1-SNAPSHOT.jar &'
+                }
             }
+            }
+            //steps {
+              
+                //sh "bash ./clickup.sh"
+                
+            //}
         
         }
 
