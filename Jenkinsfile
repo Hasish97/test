@@ -1,8 +1,9 @@
 pipeline {
-    agent none
+    agent any
 
     stages {
         stage('Stop app running on port 8080') {
+        
             steps {
                 sh 'sudo lsof -t -i:8080 | xargs --no-run-if-empty sudo kill -9'
             }
