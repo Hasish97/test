@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    options {
+        skipStagesAfterUnstable()
+        disableConcurrentBuilds()
+    }
 
     stages {
         stage('Stop app running on port 8080') {
@@ -45,6 +49,7 @@ pipeline {
             stage('Start Server') {
                 steps {
                     sh 'java -jar target/ClickupDashboard-0.0.1-SNAPSHOT.jar &'
+                    sh 'sleep 60'
                 }
             }
             }
