@@ -39,21 +39,21 @@ pipeline {
                 //}
             //}
         //}
-        //stage('Deploy and Run') {
-            //steps {
+        stage('Deploy and Run') {
+            steps {
               
-                //sh "/var/lib/jenkins/workspace/clickupp/clickup/target/startclickup.sh"
+                sh "nohup java -jar /var/lib/jenkins/workspace/test/clickup/target/ClickupDashboard-0.0.1-SNAPSHOT.jar > clickup.log 2>&1 &"
                 
-            //}
+            }
         
-        //}
-
-    }
-
-    post {
-        always {
-            sh "nohup java -jar /var/lib/jenkins/workspace/test/clickup/target/ClickupDashboard-0.0.1-SNAPSHOT.jar > clickup.log 2>&1 &"
-            sh "sleep 60"
         }
+
     }
+
+    ///post {
+        //always {
+            //sh "nohup java -jar /var/lib/jenkins/workspace/test/clickup/target/ClickupDashboard-0.0.1-SNAPSHOT.jar > clickup.log 2>&1 &"
+            //sh "sleep 60"
+        //}
+    //}
 }
