@@ -6,10 +6,10 @@ pipeline {
     }
 
     stages {
-        stage('Stop app running on port 8080') {
+        stage('Stop clickup service') {
         
             steps {
-                sh 'sudo lsof -t -i:8080 | xargs --no-run-if-empty sudo kill -9'
+                sh 'sudo systemctl stop clickup'
             }
         }
 
@@ -36,17 +36,13 @@ pipeline {
             }
         }
         
-        stage('Deploy and Run') {
+        stage('Start clickup service') {
                 steps {
                     sh 'sudo systemctl start clickup'
                 }
             }
             
-            //steps {
-              
-                //sh "bash ./clickup.sh"
-                
-            //}
+            
         
         
 
